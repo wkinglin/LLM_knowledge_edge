@@ -88,39 +88,54 @@ def inference(tokenizer,model,input_text,subject,prompt_data):
                 output_scores = True,
                 return_dict_in_generate=True
             )
-        logits = outputs['scores'][0][0]    #The first token
-        probs = (
-            torch.nn.functional.softmax(
-                torch.tensor(
-                    [
-                        logits[tokenizer("A").input_ids[0]],
-                        logits[tokenizer("B").input_ids[0]],
-                        logits[tokenizer("C").input_ids[0]],
-                        logits[tokenizer("D").input_ids[0]],
-                    ]
-                ),
-                dim=0,
-            )
-            .detach()
-            .cpu()
-            .numpy()
-        )
-        output_text = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(probs)]
+        logits = outputs['scores']  # The first token
+        logit = logits[0][0]
+        # 将 logits 转换为概率分布
+        probs = torch.nn.functional.softmax(
+            torch.tensor(
+                [
+                    logit[tokenizer("A").input_ids[0]],        # logits for "A"
+                    logit[tokenizer("B").input_ids[0]],        # logits for "B"
+                    logit[tokenizer("C").input_ids[0]],        # logits for "C"
+                    logit[tokenizer("D").input_ids[0]],        # logits for "D"
+                    logit[tokenizer(" A").input_ids[0]],       # logits for " A" (with leading space)
+                    logit[tokenizer(" B").input_ids[0]],       # logits for " B" (with leading space)
+                    logit[tokenizer(" C").input_ids[0]],       # logits for " C" (with leading space)
+                    logit[tokenizer(" D").input_ids[0]],       # logits for " D" (with leading space)
+                ]
+            ),
+            dim=0,
+        ).detach().cpu().numpy()
+
+        # 合并对应选项的概率
+        probs_combined = np.array([
+            probs[0] + probs[4],  # "A" 和 " A"
+            probs[1] + probs[5],  # "B" 和 " B"
+            probs[2] + probs[6],  # "C" 和 " C"
+            probs[3] + probs[7],  # "D" 和 " D"
+        ])
+
+        # 获取最大概率的选项
+        output_text = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(probs_combined)]
     return output_text, full_input
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--dataset', type=str, default="MMLU_ID_train")
     parser.add_argument('--prompt_domain', type=str, default="ID",choices=["ID","OOD"])
-    parser.add_argument('--model', type=str, required=True)
+    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-1.5B-Instruct")
     parser.add_argument('--result',type=str, default="MMLU")
     parser.add_argument('--method',type=str,default="unsure",choices=["unsure","unknown","uncertain"])
     parser.add_argument("--num_try",type=int,default="5") #only required for uncertain method
     
     args = parser.parse_args()
     
-    tokenizer = AutoTokenizer.from_pretrained(args.model,use_fast=True,unk_token="<unk>",bos_token="<s>",eos_token="</s>",add_bos_token=False)
-    model = AutoModelForCausalLM.from_pretrained(args.model,device_map='auto')
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model,
+        torch_dtype="auto",
+        device_map="auto"
+    )
 
     LMFlow_data = {"type":"text_only","instances":[]}
 

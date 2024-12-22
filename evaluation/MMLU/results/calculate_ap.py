@@ -1,5 +1,6 @@
 import json
 import argparse
+import numpy as np
 from sklearn.metrics import average_precision_score
 from sklearn.metrics import precision_recall_curve
 
@@ -9,8 +10,9 @@ def calculate_scores(json_file):
         y_label = []
         y_prob = []
         for sample in data:
+            if np.isnan(sample[4]): sample[4] = 0
             y_label.append(sample[0])
-            y_prob.append(0.5*sample[1] + 0.5*sample[2])
+            y_prob.append(0.5*sample[3] + 0.5*sample[4])
         p1, r1, _ = precision_recall_curve(y_label, y_prob)
         ap_score = average_precision_score(y_label, y_prob)
         return ap_score

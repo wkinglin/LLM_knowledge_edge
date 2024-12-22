@@ -1,0 +1,115 @@
+{
+    "abstract_algebra": {
+        "right_num": 16,
+        "total_num": 50
+    },
+    "anatomy": {
+        "right_num": 36,
+        "total_num": 67
+    },
+    "astronomy": {
+        "right_num": 53,
+        "total_num": 76
+    },
+    "business_ethics": {
+        "right_num": 37,
+        "total_num": 50
+    },
+    "clinical_knowledge": {
+        "right_num": 92,
+        "total_num": 132
+    },
+    "college_biology": {
+        "right_num": 41,
+        "total_num": 72
+    },
+    "college_chemistry": {
+        "right_num": 18,
+        "total_num": 50
+    },
+    "college_computer_science": {
+        "right_num": 24,
+        "total_num": 50
+    },
+    "college_mathematics": {
+        "right_num": 19,
+        "total_num": 50
+    },
+    "college_medicine": {
+        "right_num": 58,
+        "total_num": 86
+    },
+    "college_physics": {
+        "right_num": 21,
+        "total_num": 51
+    },
+    "computer_security": {
+        "right_num": 38,
+        "total_num": 50
+    },
+    "conceptual_physics": {
+        "right_num": 68,
+        "total_num": 117
+    },
+    "econometrics": {
+        "right_num": 27,
+        "total_num": 57
+    },
+    "electrical_engineering": {
+        "right_num": 41,
+        "total_num": 72
+    },
+    "elementary_mathematics": {
+        "right_num": 68,
+        "total_num": 189
+    },
+    "formal_logic": {
+        "right_num": 30,
+        "total_num": 63
+    },
+    "global_facts": {
+        "right_num": 14,
+        "total_num": 50
+    },
+    "high_school_biology": {
+        "right_num": 111,
+        "total_num": 155
+    },
+    "high_school_chemistry": {
+        "right_num": 42,
+        "total_num": 101
+    },
+    "high_school_computer_science": {
+        "right_num": 32,
+        "total_num": 50
+    },
+    "high_school_european_history": {
+        "right_num": 57,
+        "total_num": 82
+    },
+    "high_school_geography": {
+        "right_num": 76,
+        "total_num": 99
+    },
+    "high_school_government_and_politics": {
+        "right_num": 84,
+        "total_num": 96
+    },
+    "high_school_macroeconomics": {
+        "right_num": 127,
+        "total_num": 195
+    },
+    "high_school_mathematics": {
+        "right_num": 33,
+        "total_num": 135
+    },
+    "high_school_microeconomics": {
+        "right_num": 75,
+        "total_num": 119
+    },
+    "high_school_physics": {
+        "right_num": 27,
+        "total_num": 75
+    },
+    "total": 0.5596555965559655
+}

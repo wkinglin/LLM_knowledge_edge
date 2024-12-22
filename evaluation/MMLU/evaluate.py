@@ -52,36 +52,50 @@ def gen_prompt(input_list,subject,prompt_data):
     prompt += format_example(input_list)
     return prompt
 
+
 def inference(tokenizer,model,input_text,subject,prompt_data):
     full_input = gen_prompt(input_text,subject,prompt_data)
     inputs = tokenizer(full_input,return_tensors="pt").to(0)
     ids = inputs['input_ids']
-    length = len(ids[0])     
+  
     outputs = model.generate(
                 ids,
                 max_new_tokens = 1,
                 output_scores = True,
                 return_dict_in_generate=True
             )
-    logits = outputs['scores'][0][0]    #The first token
-    probs = (
-            torch.nn.functional.softmax(
-                torch.tensor(
-                    [
-                        logits[tokenizer("A").input_ids[0]],
-                        logits[tokenizer("B").input_ids[0]],
-                        logits[tokenizer("C").input_ids[0]],
-                        logits[tokenizer("D").input_ids[0]],
-                    ]
-                ),
-                dim=0,
-            )
-            .detach()
-            .cpu()
-            .numpy()
-    )
-    output_text = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(probs)]
+    logits = outputs['scores'][0][0]  # The first token
+
+    # 将 logits 转换为概率分布
+    probs = torch.nn.functional.softmax(
+        torch.tensor(
+            [
+                logits[tokenizer("A").input_ids[0]],        # logits for "A"
+                logits[tokenizer("B").input_ids[0]],        # logits for "B"
+                logits[tokenizer("C").input_ids[0]],        # logits for "C"
+                logits[tokenizer("D").input_ids[0]],        # logits for "D"
+                logits[tokenizer(" A").input_ids[0]],       # logits for " A" (with leading space)
+                logits[tokenizer(" B").input_ids[0]],       # logits for " B" (with leading space)
+                logits[tokenizer(" C").input_ids[0]],       # logits for " C" (with leading space)
+                logits[tokenizer(" D").input_ids[0]],       # logits for " D" (with leading space)
+            ]
+        ),
+        dim=0,
+    ).detach().cpu().numpy()
+
+    # 合并对应选项的概率
+    probs_combined = np.array([
+        probs[0] + probs[4],  # "A" 和 " A"
+        probs[1] + probs[5],  # "B" 和 " B"
+        probs[2] + probs[6],  # "C" 和 " C"
+        probs[3] + probs[7],  # "D" 和 " D"
+    ])
+
+    # 获取最大概率的选项
+    output_text = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(probs_combined)]
     conf = np.max(probs)
+
+    # from IPython import embed; embed()
         
     return output_text, full_input, conf.item()
 
@@ -107,7 +121,7 @@ def checksure(input_text):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--domain', type=str, default="ID",choices=["ID","OOD"])
-    parser.add_argument('--model', type=str, required=True)
+    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-1.5B-Instruct")
     parser.add_argument('--result',type=str, default="MMLU")
     
     args = parser.parse_args()
@@ -125,24 +139,23 @@ if __name__ == "__main__":
     with open(f"../../R-Tuning-data/MMLU/MMLU_{args.domain}_test.json",'r') as f:
         data = json.load(f)
     
-    with open(f"../../R-Tuning-data/MMLU/MMLU_{args.domain}_prompt",'r') as f:
+    with open(f"../../R-Tuning-data/MMLU/MMLU_{args.domain}_prompt.json",'r') as f:
         prompt = json.load(f)
-        
+    
     for i in tqdm(data.keys()):  
         prompt_data = prompt[i]
         type_name = i
         for instance in tqdm(data[i]):
-            output,full_input, predict_conf = inference(tokenizer,model,instance,i,prompt_data)
+            output,full_input = inference(tokenizer,model,instance,i,prompt_data)
             sure_prob = checksure(f"{full_input}{output}")
             
             if instance[1] in output:
-                results.append((1,predict_conf,sure_prob))   # 1 denotes correct prediction
+                results.append((1, sure_prob))   # 1 denotes correct prediction
             else:
-                results.append((0,predict_conf,sure_prob))   # 0 denotes wrong prediction
-            
+                results.append((0, sure_prob))   # 0 denotes wrong prediction  
         torch.cuda.empty_cache()
         
     os.makedirs("results",exist_ok=True)
-    with open(f"results/{args.result}_{args.domain}.json",'w') as f:
+    with open(f"results/{args.result}_{args.domain}_test.json",'w') as f:
         json.dump(results,f)
 
