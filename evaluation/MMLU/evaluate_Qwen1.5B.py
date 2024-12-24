@@ -15,6 +15,35 @@ UNSURE = []
 
 choices = ["A", "B", "C", "D"]
 
+def format_example_raw(input_list):
+    prompt = input_list[0]
+    k = len(input_list) - 2
+    for j in range(k):
+        prompt += "\n{}. {}".format(choices[j], input_list[j+1])
+    prompt += "\nAnswer:"
+    return prompt
+
+def format_shots_raw(prompt_data):
+    prompt = ""
+    for data in prompt_data:
+        prompt += data[0]
+        k = len(data) - 2
+        for j in range(k):
+            prompt += "\n{}. {}".format(choices[j], data[j+1])
+        prompt += "\nAnswer:"
+        prompt += data[k+1] + "\n\n"
+
+    return prompt
+
+
+def gen_prompt_raw(input_list,subject,prompt_data):
+    prompt = "The following are multiple choice questions (with answers) about {}.\n\n".format(
+        format_subject(subject)
+    )
+    prompt += format_shots_raw(prompt_data)
+    prompt += format_example_raw(input_list)
+    return prompt
+
 def format_subject(subject):
     l = subject.split("_")
     s = ""
@@ -29,7 +58,7 @@ def format_example(input_list):
     k = len(input_list) - 2
     for j in range(k):
         prompt += "\n{}. {}".format(choices[j], input_list[j+1])
-    prompt += "Answer:"
+    prompt += "\nAnswer:"
 
     message.append({"role": "user", "content": prompt})
     return message
@@ -43,8 +72,8 @@ def format_shots(prompt_data):
         k = len(data) - 2
         for j in range(k):
             prompt += "\n{}. {}".format(choices[j], data[j+1])
-        prompt += "Answer:"
-        answer += data[k+1]
+        prompt += "\nAnswer:"
+        answer += data[k+1]+"\n"
 
         message.append({"role": "user", "content": prompt})
         message.append({"role": "assistant", "content": answer})
@@ -82,6 +111,7 @@ def gen_prompt(tokenizer, input_list, subject, prompt_data):
 
 def inference(tokenizer, model, input_text, subject, prompt_data):
     full_input, messages = gen_prompt(tokenizer, input_text, subject, prompt_data)
+    full_input_raw = gen_prompt_raw(input_text,subject,prompt_data)
 
     inputs = tokenizer([full_input], return_tensors="pt").to(model.device)
 
@@ -133,22 +163,25 @@ def inference(tokenizer, model, input_text, subject, prompt_data):
 
     # from IPython import embed; embed()
 
-    return output_text, full_input, conf, messages
+    messages.append({"role": "assistant", "content": response})
+    return output_text, full_input, conf, messages, full_input_raw
 
 def checksure(messages, input_text):
-    messages.append({"role": "user", "content": "Are you sure you accurately answered the question based on your internal knowledge? Please respond with either 'sure' or 'unsure' in lowercase. I am"})
+    # input_text = messages[-2]['content'] + messages[-1]['content']
+    
+    messages.append({"role": "user", "content": "Are you sure you accurately answered the question based on your internal knowledge? Please only respond with either 'sure' or 'unsure' in lowercase. I am"})
     full_input = tokenizer.apply_chat_template(
         messages,
         tokenize=False,
         add_generation_prompt=True
     )
 
-    # full_input = f"{input_text}. Are you sure you accurately answered the question based on your internal knowledge? Please respond with either 'sure' or 'unsure' in lowercase."
+    full_input = f"There is the context: {input_text}. Are you sure you accurately answered the question based on your internal knowledge? Please only respond with either 'sure' or 'unsure' in lowercase. I am ."
 
     inputs = tokenizer([full_input], return_tensors="pt").to(model.device)
     outputs = model.generate(
                 **inputs,
-                max_new_tokens = 512,
+                max_new_tokens = 2,
                 output_scores = True,
                 return_dict_in_generate=True
             )
@@ -167,12 +200,29 @@ def checksure(messages, input_text):
     
     # from IPython import embed; embed()
 
-    return sure_prob.item(), response
+    # 获取大于0的索引
+    indices = torch.nonzero(pt > 0).squeeze()
+
+    try:
+        if indices.dim() == 0:
+            indices = indices.unsqueeze(0)  # 将其转换为一维张量
+
+        if indices.numel() > 0:  # 确保有大于0的元素
+            values = pt[indices]
+            all_prob = {index.item(): value.item() for index, value in zip(indices, values)}
+        else:
+            all_prob = {}
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        print(indices)
+        print(pt)
+
+    return sure_prob.item(), response, all_prob
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--domain', type=str, default="ID",choices=["ID","OOD"])
-    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-1.5B-Instruct")
+    parser.add_argument('--model', type=str, default="/mnt/data5/yhq/output_models/Qwen2.5-1.5B-finetuned-allparam-without-tokenizer")
     parser.add_argument('--adapter', type=str, default="/mnt/data5/yhq/output_models/Qwen2.5-1.5B-finetuned-lora")
     parser.add_argument('--result',type=str, default="MMLU")
     
@@ -200,25 +250,28 @@ if __name__ == "__main__":
     
     with open(f"../../R-Tuning-data/MMLU/MMLU_{args.domain}_prompt.json",'r') as f:
         prompt = json.load(f)
-        
-    for i in tqdm(data.keys()):  
-        prompt_data = prompt[i]
-        type_name = i
-        for instance in tqdm(data[i]):
-            output, full_input, predict_conf, messages = inference(tokenizer, model, instance, i, prompt_data)
-            predict_conf = predict_conf.item()  # 将 float32 转换为 Python float
-
-            sure_prob, response = checksure(messages, f"Question:{full_input}. Your answer: {output}")
-            
-            label = instance[5]
-            if label in output:
-                results.append((1, label, output, predict_conf, sure_prob, type_name, response))   # 1 denotes correct prediction
-            else:
-                results.append((0, label, output, predict_conf, sure_prob, type_name, response))   # 0 denotes wrong prediction
-        torch.cuda.empty_cache()
-        
+    
     os.makedirs("results",exist_ok=True)
-    with open(f"results/{args.result}_{args.domain}_Qwen1.5B_without_finetune.json",'w') as f:
+    with open(f"results/{args.result}_{args.domain}_Qwen1.5B_ft2_no_t.jsonl",'w') as f:
         # from IPython import embed; embed()
-        json.dump(results,f)
+        results = []
+        for i in tqdm(data.keys()):  
+            prompt_data = prompt[i]
+            type_name = i
+            for instance in tqdm(data[i]):
+                output, full_input, predict_conf, messages, full_input_raw = inference(tokenizer, model, instance, i, prompt_data)
+                predict_conf = predict_conf.item()  # 将 float32 转换为 Python float
+
+                sure_prob, response, all_prob = checksure(messages, f"Question:{full_input_raw}. Your answer: {output}")
+                
+                label = instance[5]
+                if label in output:
+                    results.append((1, label, output, predict_conf, sure_prob, type_name, response, all_prob))   # 1 denotes correct prediction
+                else:
+                    results.append((0, label, output, predict_conf, sure_prob, type_name, response, all_prob))   # 0 denotes wrong prediction
+            torch.cuda.empty_cache()
+
+            f.write(json.dumps(results) + '\n')  # 每个结果对象写为一行
+        
+
 

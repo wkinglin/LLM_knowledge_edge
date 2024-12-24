@@ -1,0 +1,258 @@
+{
+    "abstract_algebra": {
+        "right_num": 448,
+        "total_num": 1400,
+        "right_sure": 28,
+        "right_unsure": 420,
+        "false_sure": 28,
+        "false_unsure": 924,
+        "refuse_right_num": 952
+    },
+    "anatomy": {
+        "right_num": 999,
+        "total_num": 1809,
+        "right_sure": 0,
+        "right_unsure": 999,
+        "false_sure": 0,
+        "false_unsure": 810,
+        "refuse_right_num": 810
+    },
+    "astronomy": {
+        "right_num": 1456,
+        "total_num": 1976,
+        "right_sure": 104,
+        "right_unsure": 1352,
+        "false_sure": 0,
+        "false_unsure": 520,
+        "refuse_right_num": 624
+    },
+    "business_ethics": {
+        "right_num": 1000,
+        "total_num": 1250,
+        "right_sure": 0,
+        "right_unsure": 1000,
+        "false_sure": 0,
+        "false_unsure": 250,
+        "refuse_right_num": 250
+    },
+    "clinical_knowledge": {
+        "right_num": 2184,
+        "total_num": 3168,
+        "right_sure": 24,
+        "right_unsure": 2160,
+        "false_sure": 0,
+        "false_unsure": 984,
+        "refuse_right_num": 1008
+    },
+    "college_biology": {
+        "right_num": 920,
+        "total_num": 1656,
+        "right_sure": 0,
+        "right_unsure": 920,
+        "false_sure": 0,
+        "false_unsure": 736,
+        "refuse_right_num": 736
+    },
+    "college_chemistry": {
+        "right_num": 418,
+        "total_num": 1100,
+        "right_sure": 88,
+        "right_unsure": 330,
+        "false_sure": 198,
+        "false_unsure": 484,
+        "refuse_right_num": 572
+    },
+    "college_computer_science": {
+        "right_num": 546,
+        "total_num": 1050,
+        "right_sure": 84,
+        "right_unsure": 462,
+        "false_sure": 21,
+        "false_unsure": 483,
+        "refuse_right_num": 567
+    },
+    "college_mathematics": {
+        "right_num": 400,
+        "total_num": 1000,
+        "right_sure": 20,
+        "right_unsure": 380,
+        "false_sure": 20,
+        "false_unsure": 580,
+        "refuse_right_num": 600
+    },
+    "college_medicine": {
+        "right_num": 1159,
+        "total_num": 1634,
+        "right_sure": 0,
+        "right_unsure": 1159,
+        "false_sure": 0,
+        "false_unsure": 475,
+        "refuse_right_num": 475
+    },
+    "college_physics": {
+        "right_num": 414,
+        "total_num": 918,
+        "right_sure": 0,
+        "right_unsure": 414,
+        "false_sure": 0,
+        "false_unsure": 504,
+        "refuse_right_num": 504
+    },
+    "computer_security": {
+        "right_num": 629,
+        "total_num": 850,
+        "right_sure": 323,
+        "right_unsure": 306,
+        "false_sure": 34,
+        "false_unsure": 187,
+        "refuse_right_num": 510
+    },
+    "conceptual_physics": {
+        "right_num": 1056,
+        "total_num": 1872,
+        "right_sure": 0,
+        "right_unsure": 1056,
+        "false_sure": 0,
+        "false_unsure": 816,
+        "refuse_right_num": 816
+    },
+    "econometrics": {
+        "right_num": 360,
+        "total_num": 855,
+        "right_sure": 0,
+        "right_unsure": 360,
+        "false_sure": 0,
+        "false_unsure": 495,
+        "refuse_right_num": 495
+    },
+    "electrical_engineering": {
+        "right_num": 630,
+        "total_num": 1008,
+        "right_sure": 14,
+        "right_unsure": 616,
+        "false_sure": 0,
+        "false_unsure": 378,
+        "refuse_right_num": 392
+    },
+    "elementary_mathematics": {
+        "right_num": 1027,
+        "total_num": 2457,
+        "right_sure": 26,
+        "right_unsure": 1001,
+        "false_sure": 91,
+        "false_unsure": 1339,
+        "refuse_right_num": 1365
+    },
+    "formal_logic": {
+        "right_num": 336,
+        "total_num": 756,
+        "right_sure": 0,
+        "right_unsure": 336,
+        "false_sure": 0,
+        "false_unsure": 420,
+        "refuse_right_num": 420
+    },
+    "global_facts": {
+        "right_num": 154,
+        "total_num": 550,
+        "right_sure": 22,
+        "right_unsure": 132,
+        "false_sure": 22,
+        "false_unsure": 374,
+        "refuse_right_num": 396
+    },
+    "high_school_biology": {
+        "right_num": 1160,
+        "total_num": 1550,
+        "right_sure": 10,
+        "right_unsure": 1150,
+        "false_sure": 0,
+        "false_unsure": 390,
+        "refuse_right_num": 400
+    },
+    "high_school_chemistry": {
+        "right_num": 387,
+        "total_num": 909,
+        "right_sure": 18,
+        "right_unsure": 369,
+        "false_sure": 36,
+        "false_unsure": 486,
+        "refuse_right_num": 504
+    },
+    "high_school_computer_science": {
+        "right_num": 248,
+        "total_num": 400,
+        "right_sure": 56,
+        "right_unsure": 192,
+        "false_sure": 16,
+        "false_unsure": 136,
+        "refuse_right_num": 192
+    },
+    "high_school_european_history": {
+        "right_num": 378,
+        "total_num": 574,
+        "right_sure": 7,
+        "right_unsure": 371,
+        "false_sure": 0,
+        "false_unsure": 196,
+        "refuse_right_num": 203
+    },
+    "high_school_geography": {
+        "right_num": 444,
+        "total_num": 594,
+        "right_sure": 0,
+        "right_unsure": 444,
+        "false_sure": 0,
+        "false_unsure": 150,
+        "refuse_right_num": 150
+    },
+    "high_school_government_and_politics": {
+        "right_num": 420,
+        "total_num": 480,
+        "right_sure": 10,
+        "right_unsure": 410,
+        "false_sure": 0,
+        "false_unsure": 60,
+        "refuse_right_num": 70
+    },
+    "high_school_macroeconomics": {
+        "right_num": 560,
+        "total_num": 780,
+        "right_sure": 4,
+        "right_unsure": 556,
+        "false_sure": 0,
+        "false_unsure": 220,
+        "refuse_right_num": 224
+    },
+    "high_school_mathematics": {
+        "right_num": 138,
+        "total_num": 405,
+        "right_sure": 84,
+        "right_unsure": 54,
+        "false_sure": 78,
+        "false_unsure": 189,
+        "refuse_right_num": 273
+    },
+    "high_school_microeconomics": {
+        "right_num": 168,
+        "total_num": 238,
+        "right_sure": 2,
+        "right_unsure": 166,
+        "false_sure": 2,
+        "false_unsure": 68,
+        "refuse_right_num": 70
+    },
+    "high_school_physics": {
+        "right_num": 22,
+        "total_num": 75,
+        "right_sure": 8,
+        "right_unsure": 14,
+        "false_sure": 18,
+        "false_unsure": 35,
+        "refuse_right_num": 43
+    },
+    "total": {
+        "all_right_num": 18061,
+        "all_total_num": 31314
+    }
+}
