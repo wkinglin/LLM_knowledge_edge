@@ -1,0 +1,6 @@
+[
+    {"role": "system", "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant. The following are multiple choice questions (with answers) about abstract algebra.\n\n"},
+    {"role": "user", "content": "Find the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:"},
+    {"role": "assistant", "content": "B\n"},
+    {"role": "user", "content": "Are you sure you accurately answered the question based on your internal knowledge? Please only respond with either 'sure' or 'unsure' in lowercase. I am"}
+]       

@@ -176,7 +176,7 @@ def checksure(messages, input_text):
         add_generation_prompt=True
     )
 
-    full_input = f"There is the context: {input_text}. Are you sure you accurately answered the question based on your internal knowledge? Please only respond with either 'sure' or 'unsure' in lowercase. I am ."
+    # full_input = f"There is the context: {input_text}. Are you sure you accurately answered the question based on your internal knowledge? Please only respond with either 'sure' or 'unsure' in lowercase. I am ."
 
     inputs = tokenizer([full_input], return_tensors="pt").to(model.device)
     outputs = model.generate(
@@ -197,8 +197,6 @@ def checksure(messages, input_text):
     sure_prob = pt[SURE[0]]
     unsure_prob = pt[UNSURE[0]]
     sure_prob = sure_prob/(sure_prob+unsure_prob)   #normalization
-    
-    # from IPython import embed; embed()
 
     # 获取大于0的索引
     indices = torch.nonzero(pt > 0).squeeze()
@@ -217,12 +215,14 @@ def checksure(messages, input_text):
         print(indices)
         print(pt)
 
+    from IPython import embed; embed()
+
     return sure_prob.item(), response, all_prob
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--domain', type=str, default="ID",choices=["ID","OOD"])
-    parser.add_argument('--model', type=str, default="/mnt/data5/yhq/output_models/Qwen2.5-1.5B-finetuned-allparam-without-tokenizer")
+    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-1.5B-Instruct")
     parser.add_argument('--adapter', type=str, default="/mnt/data5/yhq/output_models/Qwen2.5-1.5B-finetuned-lora")
     parser.add_argument('--result',type=str, default="MMLU")
     
@@ -252,12 +252,12 @@ if __name__ == "__main__":
         prompt = json.load(f)
     
     os.makedirs("results",exist_ok=True)
-    with open(f"results/{args.result}_{args.domain}_Qwen1.5B_ft2_no_t.jsonl",'w') as f:
+    with open(f"results/{args.result}_{args.domain}_Qwen1.5B_no_ft_t.jsonl",'w') as f:
         # from IPython import embed; embed()
-        results = []
         for i in tqdm(data.keys()):  
             prompt_data = prompt[i]
             type_name = i
+            results = []
             for instance in tqdm(data[i]):
                 output, full_input, predict_conf, messages, full_input_raw = inference(tokenizer, model, instance, i, prompt_data)
                 predict_conf = predict_conf.item()  # 将 float32 转换为 Python float

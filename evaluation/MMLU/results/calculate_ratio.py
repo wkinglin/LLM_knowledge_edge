@@ -25,19 +25,7 @@ if __name__ == "__main__":
     all_right_num = 0
     all_total_num = 0
 
-    # with open("./MMLU_ID_Qwen1.5B_ft_no_t_full.json", 'r') as f:
-    #     # 读取整个文件内容
-    #     content = f.read()
-
-    #     # 使用 replace() 替换指定字符串
-    #     content = content.replace("]][[", "],[")
-
-    #     # 将修改后的内容写回到新的文件中
-    #     with open("./MMLU_ID_Qwen1.5B_ft_no_t_full_modified.json", 'w') as f:
-    #         f.write(content)
-
-
-    with open(f"./MMLU_ID_Qwen1.5B_ft_no_t_full_modified.json",'r') as f:
+    with open(f"./MMLU_ID_Qwen1.5B_no_ft_no_t_modify.json",'r') as f:
         output = json.load(f)
 
         for i in categories:
@@ -76,6 +64,6 @@ if __name__ == "__main__":
              "all_total_num": all_total_num
         }
 
-    with open(f"./MMLU_ID_Qwen1.5B_ft_no_t_full/total.json","w") as f:
+    with open(f"./MMLU_ID_Qwen1.5B_no_ft_no_t/total.json","w") as f:
             json.dump(answer_dict,f)
         

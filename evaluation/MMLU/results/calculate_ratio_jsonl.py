@@ -36,7 +36,7 @@ if __name__ == "__main__":
             "refuse_right_num": 0
         }
 
-    with open(f"./MMLU_ID_Qwen1.5B_no_ft_no_t.jsonl",'r') as f:
+    with open(f"./MMLU_ID_Qwen1.5B_ft_t_sample.jsonl",'r') as f:
         for line in f.readlines():
             output = json.loads(line.strip())
 
@@ -66,6 +66,6 @@ if __name__ == "__main__":
             "all_total_num": all_total_num
         }
 
-    with open(f"./MMLU_ID_Qwen1.5B_no_ft_no_t_full/total.json","w") as f:
+    with open(f"./MMLU_ID_Qwen1.5B_ft_t_sample/total.json","w") as f:
             json.dump(answer_dict,f)
         

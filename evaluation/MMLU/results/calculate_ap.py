@@ -19,7 +19,7 @@ def calculate_scores(json_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate Average Precision Score from result JSON file.")
-    parser.add_argument('--result', type=str, required=True, help='Path to the result JSON file.')
+    parser.add_argument('--result', type=str, default="/mnt/data3/yhq/jwl/R-Tuning/evaluation/MMLU/results/MMLU_ID_Qwen1.5B_no_ft_no_t_modify.json", help='Path to the result JSON file.')
 
     args = parser.parse_args()
     score = calculate_scores(args.result)
