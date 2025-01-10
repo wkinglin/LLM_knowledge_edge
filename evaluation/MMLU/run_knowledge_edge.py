@@ -9,6 +9,8 @@ import math
 import os
 import numpy as np
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,2,3,4,5,6,7'
+
 choices = ["A", "B", "C", "D"]
 
 def format_subject(subject):
@@ -123,9 +125,9 @@ def inference(tokenizer,model,input_text,subject,prompt_data):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument('--dataset', type=str, default="MMLU_ID_test")
+    parser.add_argument('--dataset', type=str, default="MMLU_OOD_test")
     parser.add_argument('--prompt_domain', type=str, default="ID",choices=["ID","OOD"])
-    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-1.5B-Instruct")
+    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-3B-Instruct")
     parser.add_argument('--result',type=str, default="MMLU")
     parser.add_argument('--method',type=str,default="unsure",choices=["unsure","unknown","uncertain"])
     parser.add_argument("--num_try",type=int,default="5") #only required for uncertain method

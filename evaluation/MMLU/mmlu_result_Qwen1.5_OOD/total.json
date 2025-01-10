@@ -1,0 +1,119 @@
+{
+    "high_school_psychology": {
+        "right_num": 440,
+        "total_num": 545
+    },
+    "high_school_statistics": {
+        "right_num": 97,
+        "total_num": 216
+    },
+    "high_school_us_history": {
+        "right_num": 133,
+        "total_num": 204
+    },
+    "high_school_world_history": {
+        "right_num": 171,
+        "total_num": 237
+    },
+    "human_aging": {
+        "right_num": 144,
+        "total_num": 223
+    },
+    "human_sexuality": {
+        "right_num": 94,
+        "total_num": 131
+    },
+    "international_law": {
+        "right_num": 90,
+        "total_num": 121
+    },
+    "jurisprudence": {
+        "right_num": 81,
+        "total_num": 108
+    },
+    "logical_fallacies": {
+        "right_num": 122,
+        "total_num": 163
+    },
+    "machine_learning": {
+        "right_num": 42,
+        "total_num": 112
+    },
+    "management": {
+        "right_num": 84,
+        "total_num": 103
+    },
+    "marketing": {
+        "right_num": 197,
+        "total_num": 234
+    },
+    "medical_genetics": {
+        "right_num": 69,
+        "total_num": 100
+    },
+    "miscellaneous": {
+        "right_num": 558,
+        "total_num": 783
+    },
+    "moral_disputes": {
+        "right_num": 225,
+        "total_num": 346
+    },
+    "moral_scenarios": {
+        "right_num": 243,
+        "total_num": 895
+    },
+    "nutrition": {
+        "right_num": 209,
+        "total_num": 306
+    },
+    "philosophy": {
+        "right_num": 203,
+        "total_num": 311
+    },
+    "prehistory": {
+        "right_num": 215,
+        "total_num": 324
+    },
+    "professional_accounting": {
+        "right_num": 128,
+        "total_num": 282
+    },
+    "professional_law": {
+        "right_num": 629,
+        "total_num": 1534
+    },
+    "professional_medicine": {
+        "right_num": 144,
+        "total_num": 272
+    },
+    "professional_psychology": {
+        "right_num": 361,
+        "total_num": 612
+    },
+    "public_relations": {
+        "right_num": 74,
+        "total_num": 110
+    },
+    "security_studies": {
+        "right_num": 167,
+        "total_num": 245
+    },
+    "sociology": {
+        "right_num": 154,
+        "total_num": 201
+    },
+    "us_foreign_policy": {
+        "right_num": 78,
+        "total_num": 100
+    },
+    "virology": {
+        "right_num": 75,
+        "total_num": 166
+    },
+    "world_religions": {
+        "right_num": 128,
+        "total_num": 171
+    },
+    "total": 0.5850354997269251
+}

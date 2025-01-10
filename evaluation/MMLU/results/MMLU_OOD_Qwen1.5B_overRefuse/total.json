@@ -1,0 +1,249 @@
+{
+    "high_school_psychology": {
+        "right_num": 395,
+        "total_num": 545,
+        "right_sure": 383,
+        "right_unsure": 12,
+        "false_sure": 133,
+        "false_unsure": 17,
+        "refuse_right_num": 400
+    },
+    "high_school_statistics": {
+        "right_num": 112,
+        "total_num": 216,
+        "right_sure": 109,
+        "right_unsure": 3,
+        "false_sure": 99,
+        "false_unsure": 5,
+        "refuse_right_num": 114
+    },
+    "high_school_world_history": {
+        "right_num": 139,
+        "total_num": 237,
+        "right_sure": 129,
+        "right_unsure": 10,
+        "false_sure": 82,
+        "false_unsure": 16,
+        "refuse_right_num": 145
+    },
+    "human_aging": {
+        "right_num": 127,
+        "total_num": 223,
+        "right_sure": 115,
+        "right_unsure": 12,
+        "false_sure": 76,
+        "false_unsure": 20,
+        "refuse_right_num": 135
+    },
+    "human_sexuality": {
+        "right_num": 79,
+        "total_num": 131,
+        "right_sure": 56,
+        "right_unsure": 23,
+        "false_sure": 36,
+        "false_unsure": 16,
+        "refuse_right_num": 72
+    },
+    "international_law": {
+        "right_num": 79,
+        "total_num": 121,
+        "right_sure": 70,
+        "right_unsure": 9,
+        "false_sure": 30,
+        "false_unsure": 12,
+        "refuse_right_num": 82
+    },
+    "jurisprudence": {
+        "right_num": 68,
+        "total_num": 108,
+        "right_sure": 46,
+        "right_unsure": 22,
+        "false_sure": 22,
+        "false_unsure": 18,
+        "refuse_right_num": 64
+    },
+    "machine_learning": {
+        "right_num": 46,
+        "total_num": 112,
+        "right_sure": 15,
+        "right_unsure": 31,
+        "false_sure": 20,
+        "false_unsure": 46,
+        "refuse_right_num": 61
+    },
+    "management": {
+        "right_num": 76,
+        "total_num": 103,
+        "right_sure": 76,
+        "right_unsure": 0,
+        "false_sure": 27,
+        "false_unsure": 0,
+        "refuse_right_num": 76
+    },
+    "marketing": {
+        "right_num": 177,
+        "total_num": 234,
+        "right_sure": 153,
+        "right_unsure": 24,
+        "false_sure": 40,
+        "false_unsure": 17,
+        "refuse_right_num": 170
+    },
+    "medical_genetics": {
+        "right_num": 44,
+        "total_num": 100,
+        "right_sure": 44,
+        "right_unsure": 0,
+        "false_sure": 56,
+        "false_unsure": 0,
+        "refuse_right_num": 44
+    },
+    "miscellaneous": {
+        "right_num": 507,
+        "total_num": 783,
+        "right_sure": 418,
+        "right_unsure": 89,
+        "false_sure": 176,
+        "false_unsure": 100,
+        "refuse_right_num": 518
+    },
+    "moral_disputes": {
+        "right_num": 170,
+        "total_num": 346,
+        "right_sure": 128,
+        "right_unsure": 42,
+        "false_sure": 108,
+        "false_unsure": 68,
+        "refuse_right_num": 196
+    },
+    "moral_scenarios": {
+        "right_num": 226,
+        "total_num": 895,
+        "right_sure": 196,
+        "right_unsure": 30,
+        "false_sure": 449,
+        "false_unsure": 220,
+        "refuse_right_num": 416
+    },
+    "nutrition": {
+        "right_num": 158,
+        "total_num": 306,
+        "right_sure": 153,
+        "right_unsure": 5,
+        "false_sure": 144,
+        "false_unsure": 4,
+        "refuse_right_num": 157
+    },
+    "philosophy": {
+        "right_num": 179,
+        "total_num": 311,
+        "right_sure": 59,
+        "right_unsure": 120,
+        "false_sure": 28,
+        "false_unsure": 104,
+        "refuse_right_num": 163
+    },
+    "prehistory": {
+        "right_num": 190,
+        "total_num": 324,
+        "right_sure": 169,
+        "right_unsure": 21,
+        "false_sure": 95,
+        "false_unsure": 39,
+        "refuse_right_num": 208
+    },
+    "professional_accounting": {
+        "right_num": 107,
+        "total_num": 282,
+        "right_sure": 86,
+        "right_unsure": 21,
+        "false_sure": 131,
+        "false_unsure": 44,
+        "refuse_right_num": 130
+    },
+    "professional_law": {
+        "right_num": 576,
+        "total_num": 1534,
+        "right_sure": 546,
+        "right_unsure": 30,
+        "false_sure": 870,
+        "false_unsure": 88,
+        "refuse_right_num": 634
+    },
+    "professional_medicine": {
+        "right_num": 118,
+        "total_num": 272,
+        "right_sure": 118,
+        "right_unsure": 0,
+        "false_sure": 151,
+        "false_unsure": 3,
+        "refuse_right_num": 121
+    },
+    "professional_psychology": {
+        "right_num": 298,
+        "total_num": 612,
+        "right_sure": 284,
+        "right_unsure": 14,
+        "false_sure": 282,
+        "false_unsure": 32,
+        "refuse_right_num": 316
+    },
+    "public_relations": {
+        "right_num": 65,
+        "total_num": 110,
+        "right_sure": 16,
+        "right_unsure": 49,
+        "false_sure": 9,
+        "false_unsure": 36,
+        "refuse_right_num": 52
+    },
+    "security_studies": {
+        "right_num": 137,
+        "total_num": 245,
+        "right_sure": 87,
+        "right_unsure": 50,
+        "false_sure": 63,
+        "false_unsure": 45,
+        "refuse_right_num": 132
+    },
+    "sociology": {
+        "right_num": 139,
+        "total_num": 201,
+        "right_sure": 94,
+        "right_unsure": 45,
+        "false_sure": 35,
+        "false_unsure": 27,
+        "refuse_right_num": 121
+    },
+    "us_foreign_policy": {
+        "right_num": 68,
+        "total_num": 100,
+        "right_sure": 59,
+        "right_unsure": 9,
+        "false_sure": 14,
+        "false_unsure": 18,
+        "refuse_right_num": 77
+    },
+    "virology": {
+        "right_num": 72,
+        "total_num": 166,
+        "right_sure": 70,
+        "right_unsure": 2,
+        "false_sure": 93,
+        "false_unsure": 1,
+        "refuse_right_num": 71
+    },
+    "world_religions": {
+        "right_num": 110,
+        "total_num": 171,
+        "right_sure": 102,
+        "right_unsure": 8,
+        "false_sure": 48,
+        "false_unsure": 13,
+        "refuse_right_num": 115
+    },
+    "total": {
+        "all_right_num": 4687,
+        "all_total_num": 9155
+    }
+}

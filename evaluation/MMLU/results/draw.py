@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # 读取JSON文件
-with open('./MMLU_ID_Qwen1.5B_no_ft_no_t/total.json', 'r') as f:
+with open('./MMLU_OOD_Qwen1.5B_overRefuse/total.json', 'r') as f:
     data = json.load(f)
 
 # 删除total键，因为它的结构不同
@@ -45,7 +45,7 @@ plt.legend()
 # 调整布局
 plt.tight_layout()
 
-plt.savefig('./picture/normalized_distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig('./picture/OOD_overRefuse_modify.png', dpi=300, bbox_inches='tight')
 
 # 显示图表
 plt.show()

@@ -11,6 +11,13 @@ import numpy as np
 
 if __name__ == "__main__":
 
+    ood_categories = [
+        'high_school_psychology', 'high_school_statistics', 'high_school_us_history', 'high_school_world_history', 'human_aging', 'human_sexuality', 'international_law', 'jurisprudence', 
+        'logical_fallacies', 'machine_learning', 'management', 'marketing', 'medical_genetics', 'miscellaneous', 'moral_disputes', 'moral_scenarios', 'nutrition', 'philosophy', 'prehistory', 
+        'professional_accounting', 'professional_law', 'professional_medicine', 'professional_psychology', 'public_relations', 'security_studies', 'sociology', 'us_foreign_policy', 'virology', 
+        'world_religions'
+    ]
+
     categories = [
         'abstract_algebra', 'anatomy', 'astronomy', 'business_ethics', 'clinical_knowledge',
         'college_biology', 'college_chemistry', 'college_computer_science', 'college_mathematics',
@@ -36,7 +43,7 @@ if __name__ == "__main__":
             "refuse_right_num": 0
         }
 
-    with open(f"./MMLU_ID_Qwen1.5B_ft_t_sample.jsonl",'r') as f:
+    with open(f"./MMLU_OOD_Qwen1.5B_no_ft_t.jsonl",'r') as f:
         for line in f.readlines():
             output = json.loads(line.strip())
 
@@ -66,6 +73,6 @@ if __name__ == "__main__":
             "all_total_num": all_total_num
         }
 
-    with open(f"./MMLU_ID_Qwen1.5B_ft_t_sample/total.json","w") as f:
+    with open(f"./MMLU_OOD_Qwen1.5B_no_ft_t/total.json","w") as f:
             json.dump(answer_dict,f)
         

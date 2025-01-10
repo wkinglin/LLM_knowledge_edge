@@ -9,6 +9,11 @@ import math
 import os
 import numpy as np
 
+
+
+# 仅设置一块可见
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,2,3,4,5,6,7'
+
 STOP = []
 SURE = []
 UNSURE = []
@@ -215,14 +220,14 @@ def checksure(messages, input_text):
         print(indices)
         print(pt)
 
-    from IPython import embed; embed()
+    # from IPython import embed; embed()
 
     return sure_prob.item(), response, all_prob
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--domain', type=str, default="ID",choices=["ID","OOD"])
-    parser.add_argument('--model', type=str, default="/mnt/data1/yhq/model/Qwen2.5-1.5B-Instruct")
+    parser.add_argument('--model', type=str, default="/mnt/data5/yhq/output_models/Qwen2.5-1.5B-finetuned-allparam")
     parser.add_argument('--adapter', type=str, default="/mnt/data5/yhq/output_models/Qwen2.5-1.5B-finetuned-lora")
     parser.add_argument('--result',type=str, default="MMLU")
     
@@ -251,8 +256,9 @@ if __name__ == "__main__":
     with open(f"../../R-Tuning-data/MMLU/MMLU_{args.domain}_prompt.json",'r') as f:
         prompt = json.load(f)
     
+
     os.makedirs("results",exist_ok=True)
-    with open(f"results/{args.result}_{args.domain}_Qwen1.5B_no_ft_t.jsonl",'w') as f:
+    with open(f"results/{args.result}_{args.domain}_Qwen2.5-1.5B-ft_t.jsonl",'w') as f:
         # from IPython import embed; embed()
         for i in tqdm(data.keys()):  
             prompt_data = prompt[i]
